@@ -19,7 +19,7 @@ class index_controller extends base_controller {
 			$this->template->content = View::instance('v_index_index');
 			
 		# Now set the <title> tag
-			$this->template->title = "Hello World";
+			$this->template->title = "English Courses: Improve your English with online courses.";
 	
 		# CSS/JS includes
 			/*
@@ -29,6 +29,13 @@ class index_controller extends base_controller {
 	    	$client_files_body = Array("");
 	    	$this->template->client_files_body = Utils::load_client_files($client_files_body);   
 	    	*/
+
+
+    	# Pass in the signup module
+			$this->template->content->signup_module = View::instance('v_signup_module');
+
+		# Pass in the login module
+			$this->template->content->login_module = View::instance('v_login_module');
 	      					     		
 		# Render the view
 			echo $this->template;
