@@ -14,31 +14,56 @@ class index_controller extends base_controller {
 	-------------------------------------------------------------------------------------------------*/
 	public function index() {
 		
-		# Any method that loads a view will commonly start with this
-		# First, set the content of the template with a view file
-			$this->template->content = View::instance('v_index_index');
-			
-		# Now set the <title> tag
-			$this->template->title = "English Courses: Improve your English with online courses.";
-	
-		# CSS/JS includes
-			/*
-			$client_files_head = Array("");
-	    	$this->template->client_files_head = Utils::load_client_files($client_files);
-	    	
-	    	$client_files_body = Array("");
-	    	$this->template->client_files_body = Utils::load_client_files($client_files_body);   
-	    	*/
+		# Direct to landing page to register or log in if not logged in
+        if(!$this->user) {
 
+			# Load signup and login page
+				$this->template->content = View::instance('v_index_index');
+				
+			# Set the <title> tag
+				$this->template->title = "English Courses: Improve your English with online courses.";
 
-    	# Pass in the signup module
-			$this->template->content->signup_module = View::instance('v_signup_module');
+	    	# Pass in the signup module
+				$this->template->content->signup_module = View::instance('v_signup_module');
 
-		# Pass in the login module
-			$this->template->content->login_module = View::instance('v_login_module');
-	      					     		
-		# Render the view
-			echo $this->template;
+			# Pass in the login module
+				$this->template->content->login_module = View::instance('v_login_module');
+			# Render the view
+				echo $this->template;
+		}
+
+		else {
+
+			# Check if logged in user has enrolled in any courses
+			    $q = "SELECT * FROM courses
+			    	INNER JOIN users_courses
+			    		ON courses.course_id = users_courses.course_id
+		    		WHERE users_courses.user_id = ".$this->user->user_id.
+		    		" ORDER BY courses.course_id";
+
+		    # Run the query
+			    $courses = DB::instance(DB_NAME)->select_rows($q);
+
+			    if(empty($courses)) {
+			    	# No courses in progress, so direct to all courses page
+		        	Router::redirect("/courses");
+			    }
+
+			    else {
+
+			    	# Load signup and login page
+						$this->template->content = View::instance('v_index_mycourses');
+						
+					# Set the <title> tag
+						$this->template->title = "My English Courses";
+
+					# Pass data of user's enrolled courses to the View
+			    		$this->template->content->courses = $courses;
+					
+					# Render the view
+						echo $this->template;
+			    }
+		}
 
 	} # End of method
 	
