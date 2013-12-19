@@ -25,7 +25,7 @@
 			<? foreach($contents as $content): ?>
 			<li>
 				<h4>
-					<a href="/study/<?= $content["url"]; ?>">
+					<a href="/study/<?= $course["url"]; ?>/<?= $content["url"]; ?>">
 						<?= $content["title"]; ?>
 					</a>
 				</h4>
