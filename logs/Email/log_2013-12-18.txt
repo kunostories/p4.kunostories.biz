@@ -1,0 +1,51 @@
+2013-12-18 19:58:31 - INFO --> -------------------------- 
+2013-12-18 19:58:31 - INFO --> Controller/Method: index/index 
+2013-12-18 19:58:31 - INFO --> From: Sample App (webmaster@sample-app.com) 
+2013-12-18 19:58:31 - INFO --> To: Sample App (webmaster@myapp.com),  
+2013-12-18 19:58:31 - INFO --> CC:  
+2013-12-18 19:58:31 - INFO --> BCC:  
+2013-12-18 19:58:31 - INFO --> Subject: Sample App SQL Error 
+2013-12-18 19:58:31 - INFO --> Body: <h2>SQL Error</h2> SELECT *
+					FROM users
+					WHERE token = 'a1cf0c9d772ac57217d75469d9b6f96fa50ce6ad'
+					LIMIT 1 No database selected<h2>Query History</h2>0 = SELECT *
+					FROM users
+					WHERE token = 'a1cf0c9d772ac57217d75469d9b6f96fa50ce6ad'
+					LIMIT 1<br><h2>SERVER</h2><pre>Array
+(
+     
+2013-12-18 19:58:31 - INFO --> FAILED TO SEND EMAIL 
+2013-12-18 19:59:07 - INFO --> -------------------------- 
+2013-12-18 19:59:07 - INFO --> Controller/Method: index/index 
+2013-12-18 19:59:07 - INFO --> From: Sample App (webmaster@sample-app.com) 
+2013-12-18 19:59:07 - INFO --> To: Sample App (webmaster@myapp.com),  
+2013-12-18 19:59:07 - INFO --> CC:  
+2013-12-18 19:59:07 - INFO --> BCC:  
+2013-12-18 19:59:07 - INFO --> Subject: Sample App SQL Error 
+2013-12-18 19:59:07 - INFO --> Body: <h2>SQL Error</h2> SELECT *
+					FROM users
+					WHERE token = 'a1cf0c9d772ac57217d75469d9b6f96fa50ce6ad'
+					LIMIT 1 No database selected<h2>Query History</h2>0 = SELECT *
+					FROM users
+					WHERE token = 'a1cf0c9d772ac57217d75469d9b6f96fa50ce6ad'
+					LIMIT 1<br><h2>SERVER</h2><pre>Array
+(
+     
+2013-12-18 19:59:07 - INFO --> FAILED TO SEND EMAIL 
+2013-12-18 19:59:11 - INFO --> -------------------------- 
+2013-12-18 19:59:11 - INFO --> Controller/Method: index/index 
+2013-12-18 19:59:11 - INFO --> From: Sample App (webmaster@sample-app.com) 
+2013-12-18 19:59:11 - INFO --> To: Sample App (webmaster@myapp.com),  
+2013-12-18 19:59:11 - INFO --> CC:  
+2013-12-18 19:59:11 - INFO --> BCC:  
+2013-12-18 19:59:11 - INFO --> Subject: Sample App SQL Error 
+2013-12-18 19:59:11 - INFO --> Body: <h2>SQL Error</h2> SELECT *
+					FROM users
+					WHERE token = 'a1cf0c9d772ac57217d75469d9b6f96fa50ce6ad'
+					LIMIT 1 No database selected<h2>Query History</h2>0 = SELECT *
+					FROM users
+					WHERE token = 'a1cf0c9d772ac57217d75469d9b6f96fa50ce6ad'
+					LIMIT 1<br><h2>SERVER</h2><pre>Array
+(
+     
+2013-12-18 19:59:11 - INFO --> FAILED TO SEND EMAIL 
