@@ -223,10 +223,10 @@ class users_controller extends base_controller {
                 $this->template->content->success = "Success! Profile updated!";
             }
             elseif($success == NULL) {
-                $this->template->content->success = NULL;
+                $this->template->content->success = "Hey there! Update your profile here. Then <a href='/courses'>enroll in a course</a> and start studying!";
             }
             elseif($success == 'length') {
-                $this->template->content->success = "Your alias must be at least 3 characters.";
+                $this->template->content->error = "Your alias must be at least 3 characters.";
             }
             else {
                 $this->template->content->error = "Watchu talkin' bout, ".$success."?";

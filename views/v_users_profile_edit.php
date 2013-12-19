@@ -3,12 +3,25 @@
 	<div class="col-sm-6 col-sm-offset-3 well">
 		<h1>Edit Profile of <?=$user->alias?></h1>
 
-		<p class='text-danger'>
-			<?=$error;?>
-		</p>
-		<p class='text-success'>
-			<?=$success;?>
-		</p>
+		<!-- show error message if set -->
+		<?php if(isset($error)): ?>
+		<div class="alert alert-danger fade in">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<p class="text-danger">
+				<?=$error ?>
+			</p>
+		</div>
+		<?php endif; ?>
+
+		<!-- show success message if set -->
+		<?php if(isset($success)): ?>
+		<div class="alert alert-success fade in">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<p class="text-success">
+				<?=$success ?>
+			</p>
+		</div>
+		<?php endif; ?>
 
 		<form method="POST" action="/users/p_edit" role="form">
 			<div class="form-group">

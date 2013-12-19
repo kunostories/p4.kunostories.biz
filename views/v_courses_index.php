@@ -32,7 +32,7 @@
 		<div class="alert alert-warning fade in">
 			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
 			<p class="text-warning">
-				<strong>Whoops!</strong> <?=$error ?>
+				<strong>Hey there!</strong> <?=$error ?>
 			</p>
 		</div>
 		<?php endif; ?>

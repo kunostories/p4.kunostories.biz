@@ -36,7 +36,7 @@ class courses_controller extends base_controller {
 
 	    if(empty($enrolled)) {
 	    	# Not enrolled in any courses, let them know
-        	$error = "You are not enrolled in any courses yet.";
+        	$error = "Why don't you enroll in a course?";
 	    }
 	    else {
 	    	$error = NULL;

@@ -27,10 +27,7 @@
 
 	<!-- right column-->
 	<div class="col-sm-4">
-		<!-- user not logged in display log in and sign up modules -->
-		<div class="well" id="login">
-			<?=$login_module ?>
-		</div>
+		<!-- user not logged in display sign up modules -->
 		<div class="well" id="signup">
 			<?=$signup_module ?>
 		</div>
