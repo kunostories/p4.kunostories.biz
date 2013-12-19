@@ -1,11 +1,46 @@
-<p>
-	Hello World! You have successfully spawned a new application.
-</p>
+<div class="row">
+	<div class="col-sm-12">
 
-<p>
-	This message is being triggered via the c_index.php controller, within the index() method.
-</p>
+		<!-- lead subtitle -->
+		<header class="center">
+			<p class="lead">
+				Improve your English with online courses!
+			</p>
+		</header>
 
-<p>
-	<strong>Since everything is in working order, you should now delete <?php echo APP_PATH?>diagnostics.php</strong>
-</p>
+	</div>
+</div>
+
+<div class="row">
+	<!-- left column-->
+	<div class="col-sm-7 well">
+		<!-- Splash page info about site -->
+		<video width="540" controls>
+		  <source src="img/pronunciation-promo.m4v" type="video/mp4">
+		Your browser does not support the video tag.
+		</video>
+		<h2>Pronunciation I: Consonant Sounds</h2>
+		<p class="lead">
+			Learn how to pronounce the [Th], [S], [Z], [F], [V], and [P] English consonant sounds. Improve your pronunciation quickly and easily!
+		</p>
+	</div>
+
+	<!-- right column-->
+	<div class="col-sm-4">
+		<!-- user not logged in display log in and sign up modules -->
+		<div class="well" id="login">
+			<?=$login_module ?>
+		</div>
+		<div class="well" id="signup">
+			<?=$signup_module ?>
+		</div>
+	</div>
+</div> <!--/.row-->
+
+<div class="row">
+
+	<!-- centered column displaying extra features -->
+	<div class="col-sm-7">
+
+	</div>
+</div> <!--/.row--> 
