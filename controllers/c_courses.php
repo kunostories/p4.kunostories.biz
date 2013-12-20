@@ -211,10 +211,6 @@ class courses_controller extends base_controller {
 	    	$this->template->content->success = $success;
 	    	$this->template->content->error = $error;
 
-	    	echo '<pre>';
-			print_r($contents);
-			echo '</pre>';
-
 	    	# Render the view
 	    	echo $this->template;
 	    }
