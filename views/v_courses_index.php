@@ -33,9 +33,10 @@
 					<a href="/courses/study/<?= $enroll["url"]; ?>" class="btn btn-primary">Continue Course</a>
 				</p>
 			</div>
-			<? endforeach;
-				} ?>
+			<? endforeach; ?>
 		</div>
+
+		<? } // end of if enrolled ?>
 
 		<!-- show error message if user not enrolled in any courses -->
 		<?php if(isset($error)): ?>
@@ -65,8 +66,8 @@
 
 			<!-- button to preview course and to enroll in course -->
 			<p>
-				<a href="/courses/view/<?= $course["url"]; ?>" class="btn btn-primary">View Course Page</a>
-				<a href="/courses/enroll/<?= $course["url"]; ?>" class="btn btn-success">Enroll in Course</a>
+				<a href="/courses/view/<?= $course["url"]; ?>" class="btn btn-primary btn-lg">About Course</a>
+				<a href="/courses/enroll/<?= $course["url"]; ?>" class="btn btn-success btn-lg">Enroll in Course</a>
 			</p>
 		</div>
 		<? endforeach; 

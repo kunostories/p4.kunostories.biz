@@ -44,11 +44,7 @@ class courses_controller extends base_controller {
 
 	    # Pass data to the View
 	    $this->template->content->courses = $courses;
-	    
-	    # Pass data to the View
 	    $this->template->content->enrolled = $enrolled;
-
-	    # Pass data to the View
 	    $this->template->content->error = $error;
 
 	    # Render the View
@@ -61,9 +57,8 @@ class courses_controller extends base_controller {
 	    if($course != NULL) {
 
 	    	# Build query to select course information
-	    	$q = "SELECT * FROM courses WHERE url = '".$course."'";
-
-	    	# Execute query
+	    	$q = "SELECT * FROM courses 
+	    		WHERE url = '".$course."'";
 	    	$course = DB::instance(DB_NAME)->select_rows($q);
 	    	$course = $course[0];
 
@@ -75,9 +70,15 @@ class courses_controller extends base_controller {
 	    		$error = NULL;
 	    	}
 
+	    	# Query to select contents related to course
+	    	$q2 = "SELECT * FROM contents 
+	    		WHERE course_id = ".$course["course_id"];
+	    	$contents = DB::instance(DB_NAME)->select_rows($q2);
+
 	    	$this->template->content = View::instance('v_courses_view');
 	    	$this->template->title   = $course["title"];
 	    	$this->template->content->course = $course;
+	    	$this->template->content->contents = $contents;
 
 	    	# Render the view
 	    	echo $this->template;

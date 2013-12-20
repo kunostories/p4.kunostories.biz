@@ -60,6 +60,7 @@ class index_controller extends base_controller {
 
 			    if(empty($courses)) {
 			    	# No courses in progress, so direct to all courses page
+			    	$error = "Why don't you enroll in a course?";
 		        	Router::redirect("/courses");
 			    }
 

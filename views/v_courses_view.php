@@ -12,8 +12,17 @@
 			<?= $course["about"]; ?>
 		</p>
 		<div class="clearfix"></div>
+		<ol>
+			<? foreach($contents as $content): ?>
+			<li>
+				<h4>
+					<?= $content["title"]; ?>
+				</h4>
+			</li>
+			<? endforeach; ?>
+		</ol>
 		<p>
-			<a href="/courses/enroll/<?= $course["url"]; ?>" class="btn btn-success">Enroll in Course</a>
+			<a href="/courses/enroll/<?= $course["url"]; ?>" class="btn btn-success btn-lg">Enroll in Course</a>
 		</p>
 	</div>
 </div> <!--/.row-->
