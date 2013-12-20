@@ -3,10 +3,20 @@
 	<!-- left column-->
 	<div class="col-sm-8 well">
 
-		<h2>My Courses In Progress</h2>
+		<!-- show error message -->
+		<?php if(isset($error)): ?>
+		<div class="alert alert-warning fade in">
+			<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+			<p class="text-warning">
+				<strong>Whoops!</strong> <?=$error ?>
+			</p>
+		</div>
+		<?php endif; ?>
+
+		<h2>My Courses</h2>
 		<? foreach($courses as $course): ?>
 		<div class="well">
-			<h4><?= $course["title"]; ?></h4>
+			<h3><?= $course["title"]; ?></h3>
 			<div class="pull-left">
 				<a href="/study/<?= $course["url"]; ?>">
 					<img src="/img/<?= $course["logo"]; ?>">
@@ -21,7 +31,7 @@
 			  </div>
 			</div>
 			<p>
-				<a href="/courses/study/<?= $course["url"]; ?>" class="btn btn-primary">Continue this Course</a>
+				<a href="/courses/study/<?= $course["url"]; ?>" class="btn btn-primary">Continue Course</a>
 			</p>
 		</div>
 		<? endforeach; ?>

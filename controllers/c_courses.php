@@ -7,7 +7,7 @@ class courses_controller extends base_controller {
         # Make sure user is logged in if they want to use anything in this controller
         if(!$this->user) {
             # redirect to login with error messeage
-        	Router::redirect("/");
+        	Router::redirect("/index/index/login");
         }
     }
 
@@ -129,44 +129,82 @@ class courses_controller extends base_controller {
 		# Set up the View
 	    if($course != NULL) {
 
-	    	# Build query to select course information
-	    	$q = "SELECT * FROM courses WHERE url = '".$course."'";
+	    	# Load study view first
+	    	$this->template->content = View::instance('v_courses_study');
 
-	    	# Execute query
+	    	# Query to select course data
+	    	$q = "SELECT * FROM courses
+		    	INNER JOIN users_courses
+		    	ON courses.course_id = users_courses.course_id
+		    	WHERE courses.url = '".$course."' AND 
+		    		users_courses.user_id = ". $this->user->user_id;
 	    	$course = DB::instance(DB_NAME)->select_rows($q);
 	    	$course = $course[0];
 
 	    	if(empty($course)) {
-	    		# No course found, return error
-	    		$error = "No course found of this name";
-	    	}
-	    	else {
-	    		$error = NULL;
+	    		# No course of that name
+	        	Router::redirect("/index/index/missing");
 	    	}
 
-	    	# Build query to select course content
-	    	$q2 = "SELECT * FROM contents WHERE course_id = ".$course["course_id"];
-
-	    	# Execute query
+	    	# Query to select contents related to course
+	    	$q2 = "SELECT * FROM contents 
+	    		WHERE course_id = ".$course["course_id"];
 	    	$contents = DB::instance(DB_NAME)->select_rows($q2);
 
 	    	# Check if this is a first enrolled success
-	    	if($success != NULL) {
+	    	if($success == 'missing') {
+	    		$error = "That content is missing or doesn't exist.";
+	    		$success = NULL;
+	    	}
+	    	elseif($success == 'success') {
 	    		$success = "You have successfully enrolled!";
+	    		$error = NULL;
+	    	}
+	    	elseif($success != NULL) {
+	    		$error = NULL;
+
+	    		# Query to get content data
+	    		$q3 = "SELECT * FROM contents
+	    			WHERE url = '".$success."'";
+			    $contents = DB::instance(DB_NAME)->select_row($q3);
+
+			    if(empty($contents)) {
+			    	# No content of that name
+		        	Router::redirect("/courses/study/".$course["url"]."/missing");
+			    }
+
+			    # Set it to null so as not to display it
+			    $success = NULL;
+
+			    # Get user's progress
+			    $q4 = "SELECT progress FROM users_courses
+			    	WHERE user_id = ".$this->user->user_id." AND
+			    	course_id = ".$course["course_id"];
+		    	$user_progress = DB::instance(DB_NAME)->select_row($q4);
+
+		    	# TODO Only update if $user_progress is less than position
+	    		# Update user's progress
+			    $data = Array("progress" => $contents['position']);
+			    DB::instance(DB_NAME)->update("users_courses", $data, "WHERE user_id = ".$this->user->user_id." AND course_id = ".$course['course_id']);
+
+			    # TODO Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
+
+			    # Load video view
+	    		$this->template->content = View::instance('v_courses_video');
 	    	}
 
-	    	$this->template->content = View::instance('v_courses_study');
 	    	$this->template->title   = $course["title"];
 	    	$this->template->content->course = $course;
 	    	$this->template->content->contents = $contents;
 	    	$this->template->content->success = $success;
+	    	$this->template->content->error = $error;
 
 	    	# Render the view
 	    	echo $this->template;
 	    }
 	    else {
 	    	# Send them home
-	    	Router::redirect("/");
+	    	Router::redirect("/index/index/missing");
 	    }
 	} # End of method
 
