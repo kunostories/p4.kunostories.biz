@@ -19,7 +19,7 @@
 			<h3><?= $course["title"]; ?></h3>
 			<div class="pull-left">
 				<a href="/study/<?= $course["url"]; ?>">
-					<img src="/img/<?= $course["logo"]; ?>">
+					<img alt="Course logo" src="/img/<?= $course["logo"]; ?>">
 				</a>
 			</div>
 			<p>

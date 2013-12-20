@@ -17,7 +17,7 @@
 				<h3><?= $enroll["title"]; ?></h3>
 				<div class="pull-left">
 					<a href="/courses/view/<?= $enroll["url"]; ?>">
-						<img src="/img/<?= $enroll["logo"]; ?>">
+						<img alt="Course logo" src="/img/<?= $enroll["logo"]; ?>">
 					</a>
 				</div>
 				<p>
@@ -56,7 +56,7 @@
 			<h3><?= $course["title"]; ?></h3>
 			<div class="pull-left">
 				<a href="/courses/view/<?= $course["url"]; ?>">
-					<img src="/img/<?= $course["logo"]; ?>">
+					<img alt="Course logo" src="/img/<?= $course["logo"]; ?>">
 				</a>
 			</div>
 			<p>

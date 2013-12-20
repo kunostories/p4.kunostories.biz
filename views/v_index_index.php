@@ -1,13 +1,11 @@
 <div class="row">
 	<div class="col-sm-12">
-
 		<!-- lead subtitle -->
 		<header class="center">
 			<p class="lead">
 				Improve your English with online courses!
 			</p>
 		</header>
-
 	</div>
 </div>
 
@@ -33,11 +31,3 @@
 		</div>
 	</div>
 </div> <!--/.row-->
-
-<div class="row">
-
-	<!-- centered column displaying extra features -->
-	<div class="col-sm-7">
-
-	</div>
-</div> <!--/.row--> 

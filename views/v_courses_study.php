@@ -24,7 +24,7 @@
 
 		<h2><?= $course["title"]; ?></h2>
 		<div class="pull-left">
-			<img src="/img/<?= $course["logo"]; ?>">
+			<img alt="Course logo" src="/img/<?= $course["logo"]; ?>">
 		</div>
 		<p>
 			<?= $course["about"]; ?>

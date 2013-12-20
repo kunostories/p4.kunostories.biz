@@ -5,7 +5,7 @@
 		<h2><?= $course["title"]; ?></h2>
 		<div class="pull-left">
 			<a href="/courses/enroll/<?= $course["url"]; ?>">
-				<img src="/img/<?= $course["logo"]; ?>">
+				<img alt="Course logo" src="/img/<?= $course["logo"]; ?>">
 			</a>
 		</div>
 		<p>
