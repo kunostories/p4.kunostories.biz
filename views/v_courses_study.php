@@ -32,6 +32,7 @@
 		<div class="clearfix"></div>
 			<div class="progress progress-striped">
 			  <div class="progress-bar progress-bar-success" role="progressbar" style="width: <?= ($course["progress"]/$course["length"])*100; ?>%">
+			  	<?= ($course["progress"]/$course["length"])*100; ?>%
 			  </div>
 			</div>
 		<ol>
