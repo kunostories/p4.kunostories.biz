@@ -14,4 +14,4 @@ Icon
 .Trashes
 
 # Large video files
-.m4v
+*.m4v

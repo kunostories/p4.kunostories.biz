@@ -187,7 +187,19 @@ class courses_controller extends base_controller {
 			    $data = Array("progress" => $contents['position']);
 			    DB::instance(DB_NAME)->update("users_courses", $data, "WHERE user_id = ".$this->user->user_id." AND course_id = ".$course['course_id']);
 
-			    # TODO Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
+			    # Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
+			    $next_url = $contents['position'] + 1;
+			    $q5 = "SELECT url FROM contents
+			    	WHERE position = ".$next_url;
+		    	$next_url = DB::instance(DB_NAME)->select_field($q5);
+		    	$contents["next"] = $next_url;
+
+		    	# Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
+			    $previous_url = $contents['position'] - 1;
+			    $q6 = "SELECT url FROM contents
+			    	WHERE position = ".$previous_url;
+		    	$previous_url = DB::instance(DB_NAME)->select_field($q6);
+		    	$contents["previous"] = $previous_url;
 
 			    # Load video view
 	    		$this->template->content = View::instance('v_courses_video');
@@ -198,6 +210,10 @@ class courses_controller extends base_controller {
 	    	$this->template->content->contents = $contents;
 	    	$this->template->content->success = $success;
 	    	$this->template->content->error = $error;
+
+	    	echo '<pre>';
+			print_r($contents);
+			echo '</pre>';
 
 	    	# Render the view
 	    	echo $this->template;

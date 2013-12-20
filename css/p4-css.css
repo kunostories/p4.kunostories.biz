@@ -86,3 +86,11 @@ div#signup {
 img {
   padding: 0 10px 10px 0;
 }
+
+div#controls {
+  padding-top: 1.5em;
+}
+
+div#controls a#back-to-contents {
+  margin-left: 8px;
+}
