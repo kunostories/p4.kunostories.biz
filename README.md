@@ -29,3 +29,6 @@ Javascript:
 - Log in form validation
 - Accordion on 'My Courses' while looking at 'All Courses' if enrolled in any courses
 
+Note:
+* Due to disk quota for ASO, some of the videos in the content are missing. The intro on the landing page, the 'f' sound pronunciation videos, and the review video are there.
+
