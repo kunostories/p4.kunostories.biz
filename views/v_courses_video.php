@@ -5,7 +5,7 @@
 
 		<h2><?= $currentContents["title"]; ?></h2>
 		
-		<video width="100%" controls autoplay>
+		<video controls autoplay>
 			<source src="/vids/<?= $currentContents["url"]; ?>.m4v" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
