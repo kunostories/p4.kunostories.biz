@@ -167,9 +167,9 @@ class courses_controller extends base_controller {
 	    		# Query to get content data
 	    		$q3 = "SELECT * FROM contents
 	    			WHERE url = '".$success."'";
-			    $contents = DB::instance(DB_NAME)->select_row($q3);
+			    $currentContents = DB::instance(DB_NAME)->select_row($q3);
 
-			    if(empty($contents)) {
+			    if(empty($currentContents)) {
 			    	# No content of that name
 		        	Router::redirect("/courses/study/".$course["url"]."/missing");
 			    }
@@ -185,25 +185,28 @@ class courses_controller extends base_controller {
 
 		    	# TODO Only update if $user_progress is less than position
 	    		# Update user's progress
-			    $data = Array("progress" => $contents['position']);
+			    $data = Array("progress" => $currentContents['position']);
 			    DB::instance(DB_NAME)->update("users_courses", $data, "WHERE user_id = ".$this->user->user_id." AND course_id = ".$course['course_id']);
 
 			    # Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
-			    $next_url = $contents['position'] + 1;
+			    $next_url = $currentContents['position'] + 1;
 			    $q5 = "SELECT url FROM contents
 			    	WHERE position = ".$next_url;
 		    	$next_url = DB::instance(DB_NAME)->select_field($q5);
-		    	$contents["next"] = $next_url;
+		    	$currentContents["next"] = $next_url;
 
 		    	# Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
-			    $previous_url = $contents['position'] - 1;
+			    $previous_url = $currentContents['position'] - 1;
 			    $q6 = "SELECT url FROM contents
 			    	WHERE position = ".$previous_url;
 		    	$previous_url = DB::instance(DB_NAME)->select_field($q6);
-		    	$contents["previous"] = $previous_url;
+		    	$currentContents["previous"] = $previous_url;
 
 			    # Load video view
 	    		$this->template->content = View::instance('v_courses_video');
+
+	    		$this->template->content->currentContents = $currentContents;
+
 	    	}
 
 	    	$this->template->title   = $course["title"];
