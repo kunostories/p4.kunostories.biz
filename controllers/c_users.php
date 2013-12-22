@@ -28,6 +28,11 @@ class users_controller extends base_controller {
             # State the error
             $error = "Your alias and password must be at least 3 characters.";
         }
+        elseif($error == 'alpha') {
+            # State the error
+            $error = "Your alias must be alpanumeric and contain no spaces.<br>
+            Allowed: 0-9, a-z, A-Z, !@#$%._-";
+        }
         else {
             $error = NULL;
         }
@@ -50,6 +55,12 @@ class users_controller extends base_controller {
             # Send them back to the sign up page
             Router::redirect("/users/signup/length");
         }
+
+        if(!preg_match('/^[0-9A-Za-z!@#$%._-]+$/',$_POST['alias'])) {
+            
+            # Send them back to the sign up page
+            Router::redirect("/users/signup/alpha");
+        } 
 
         # More data we want stored with the user
         $_POST['created']  = Time::now();
