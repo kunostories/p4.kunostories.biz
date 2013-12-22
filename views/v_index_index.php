@@ -13,7 +13,7 @@
 	<!-- left column-->
 	<div class="col-sm-7 well">
 		<!-- Splash page info about site -->
-		<video width="540" controls>
+		<video controls>
 		  <source src="img/pronunciation-promo.m4v" type="video/mp4">
 		Your browser does not support the video tag.
 		</video>
