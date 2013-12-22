@@ -94,3 +94,8 @@ div#controls {
 div#controls a#back-to-contents {
   margin-left: 8px;
 }
+
+label.error {
+    color:red;
+    font-size:small;
+}

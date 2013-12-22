@@ -1,5 +1,5 @@
 		<!-- begin sign up module form -->
-		<form method="POST" class="form-horizontal" action="/users/p_signup" role="form">
+		<form method="POST" id="signup" class="form-horizontal" action="/users/p_signup" role="form">
 			<h3>Sign up</h3>
 
 			<!-- sign up with alias, email, and password -->

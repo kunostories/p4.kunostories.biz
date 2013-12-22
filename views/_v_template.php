@@ -105,6 +105,8 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 		<script src="/libraries/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/js/jquery.validate.min.js"></script>
+		<script src="/js/additional-methods.min.js"></script>
 		<script src="/js/p4-js.js"></script>
 
 		<!-- Controller Specific JS/CSS -->

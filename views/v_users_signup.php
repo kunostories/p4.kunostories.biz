@@ -2,7 +2,7 @@
 	<div class="col-sm-6 col-sm-offset-3 well">
 
 		<!-- sign up form -->
-		<form method="POST" action="/users/p_signup" role="form">
+		<form method="POST" id="signup" action="/users/p_signup" role="form">
 			<h2>Sign up</h2>
 			
 			<!-- error message -->
