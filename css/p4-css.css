@@ -99,3 +99,11 @@ label.error {
     color:red;
     font-size:small;
 }
+
+@media (max-width: 420px) {
+  .btn {
+    font-size:80%;
+    line-height: 1;
+    border-radius:3px;
+  }
+}
