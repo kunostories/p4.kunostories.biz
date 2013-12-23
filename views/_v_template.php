@@ -75,8 +75,7 @@
 				
 				<!-- logo and title link back to homepage -->
 				<a class="navbar-brand" href="/">
-					<img src="/img/SBE-logo-75.png" alt="SBE logo">
-					<img src="/img/english-courses-title.png" alt="EC title">
+					<img src="/img/english-courses-title.png" alt="EC title" class="img-responsive">
 				</a>
 
 			</div><!--/.header-->
