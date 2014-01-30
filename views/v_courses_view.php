@@ -1,11 +1,11 @@
 <div class="row">
 
 	<!-- left column-->
+	<h1><?= $course["title"]; ?></h1>
 	<div class="col-sm-8 well">
-		<h2><?= $course["title"]; ?></h2>
 		<div class="pull-left">
 			<a href="/courses/enroll/<?= $course["url"]; ?>">
-				<img alt="Course logo" src="/img/<?= $course["logo"]; ?>">
+				<img alt="Course logo" class="course-logo" src="/img/<?= $course["logo"]; ?>">
 			</a>
 		</div>
 		<p>
@@ -14,10 +14,11 @@
 		<div class="clearfix"></div>
 		<ol>
 			<? foreach($contents as $content): ?>
-			<li>
+			<li class="well">
 				<h4>
 					<?= $content["title"]; ?>
 				</h4>
+				<img alt="Content logo" class="pull-right" src="/img/<?= $content["logo"]; ?>">
 			</li>
 			<? endforeach; ?>
 		</ol>

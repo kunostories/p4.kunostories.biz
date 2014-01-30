@@ -9,22 +9,7 @@
  *  http://stever.ca
  *  http://www.cssstickyfooter.com
  *
- *  background-color: #d44413;
- *  background-image: linear-gradient(to bottom, #ce4213, #dd4814);
- *  border: 1px solid #c64012;
- *
- *  .btn-primary {
- *    background-color: #e86537;
- *    background-image: -moz-linear-gradient(top, #ef784e, #dd4814);
- *    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ef784e), to(#dd4814));
- *    background-image: -webkit-linear-gradient(top, #ef784e, #dd4814);
- *    background-image: -o-linear-gradient(top, #ef784e, #dd4814);
- *    background-image: linear-gradient(to bottom, #ef784e, #dd4814);
- *    background-repeat: repeat-x;
- *    border-color: #dd4814 #dd4814 #97310e;
- *    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
- *    }
- ------------------------------------------------------------------------------*/
+ *-----------------------------------------------------------------------------*/
 
 
 html, body {
@@ -33,6 +18,16 @@ html, body {
 
 h1, h2, h3, h4 {
   font-family: Helvetica,Verdana,Arial,sans-serif;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+#nav-title {
+  vertical-align: middle;
+  font-family: Georgia, Times, serif;
+  font-size: 2em;
 }
 
 .center {
@@ -83,7 +78,7 @@ div#signup {
           border-radius: 6px;
 }
 
-img {
+img.course-logo {
   padding: 0 10px 10px 0;
 }
 
@@ -106,4 +101,12 @@ label.error {
     line-height: 1;
     border-radius:3px;
   }
+}
+
+a.navbar-brand {
+  padding: 0 20px;
+}
+
+#nav-dropdown {
+  padding: 6px 10px;
 }

@@ -1,6 +1,7 @@
 <div class="row">
 
 	<div class="col-sm-6 col-sm-offset-3 well">
+
 		<h1>Edit Profile of <?=$user->alias?></h1>
 
 		<!-- show error message if set -->
@@ -23,9 +24,9 @@
 		</div>
 		<?php endif; ?>
 
-		<form method="POST" action="/users/p_edit" role="form">
+		<form method="POST" enctype="multipart/form-data" action="/users/p_edit" role="form">
 			<div class="form-group">
-				<label>Alias:</label>
+				<label>Nickname:</label>
 				<input type="text" name="alias" class="form-control" value="<?=$user->alias?>" required>
 			</div>
 
@@ -54,8 +55,33 @@
 				<input type="number" min="5" max="109" step="1" name="age" class="form-control" value="<?=$user->age?>">
 			</div>
 
+			<div class="form-group">
+				<label>Public Profile:</label>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="public" id="public" value="1" <? if($user->public == true) { echo 'checked';} ?>> Public
+				  </label>
+				</div>
+				<div class="radio">
+				  <label>
+				    <input type="radio" name="public" id="private" value="0" <? if($user->public == false) { echo 'checked';} ?>> Private
+				  </label>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Logo:</label>
+				<input type="file" name="logo">
+			</div>
+
 			<input class="btn btn-lg btn-warning" type="submit" value="Edit Profile">
 		</form>
 		<br>
 	</div> <!--/.well-->
+	
+	<div class="col-sm-3 pull-right">
+		<?php if(!empty($user->logo)): ?>
+		<img src="/uploads/avatars/<?=$user->logo; ?>" class="img-circle" alt="user logo">
+		<?php endif; ?>
+	</div>
 </div> <!--/.row-->

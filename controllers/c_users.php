@@ -151,11 +151,11 @@ class users_controller extends base_controller {
         $_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
 
         # Search the db for this alias
-        $q = "SELECT alias 
+        $q = "SELECT alias, user_id 
             FROM users 
             WHERE alias = '".$_POST['alias']."'";
 
-        $alias_exist = DB::instance(DB_NAME)->select_field($q);
+        $alias_exist = DB::instance(DB_NAME)->select_row($q);
 
         # If we didn't find a the alias in the database, it means login failed
         if(!$alias_exist) {
@@ -166,7 +166,7 @@ class users_controller extends base_controller {
         else {
             # Search for token and password
             # Retrieve the token if it's available
-            $q = "SELECT token 
+            $q = "SELECT token
                 FROM users 
                 WHERE alias = '".$_POST['alias']."'
                 AND password = '".$_POST['password']."'";
@@ -184,6 +184,11 @@ class users_controller extends base_controller {
 
             # But if we did, login succeeded! 
             } else {
+
+                //Store time data
+                $last_login = Array("last_login" => Time::now());
+
+                DB::instance(DB_NAME)->update("users", $last_login, "WHERE user_id = ".$alias_exist['user_id']);
 
                 /* 
                 Store this token in a cookie using setcookie()
@@ -231,13 +236,16 @@ class users_controller extends base_controller {
             $this->template->title = "Edit profile for $alias";
 
             if($success == 'success') {
-                $this->template->content->success = "Success! Profile updated!";
-            }
-            elseif($success == NULL) {
-                $this->template->content->success = "Hey there! Update your profile here. Then <a href='/courses'>enroll in a course</a> and start studying!";
+                $this->template->content->success = "Success! Profile updated! Now go <a href='/courses'>browse some lessons</a>.";
             }
             elseif($success == 'length') {
                 $this->template->content->error = "Your alias must be at least 3 characters.";
+            }
+            elseif($success == 'filetype') {
+                $this->template->content->error = "Your image file must be .jpg, .png or .gif and less than 35 KB.";
+            }
+            elseif($success == NULL) {
+                $this->template->content->success = "Hey there! Update your profile here. Then <a href='/courses'>browse lessons</a> and start improving your English!";
             }
             else {
                 $this->template->content->error = "Watchu talkin' bout, ".$success."?";
@@ -259,17 +267,14 @@ class users_controller extends base_controller {
 
         # Execute the query to get the user's info. 
         # Store the result array in the variable $alias
-        $alias = DB::instance(DB_NAME)->select_rows($q);
+        $alias = DB::instance(DB_NAME)->select_row($q);
 
         if(empty($alias)) {
             $this->template->content->error   = "Sorry, this alias does not exist.";
         }
-        else {
-            $this->template->content->error   = NULL;
-        }
 
         # Pass information to the view instance
-        $this->template->content->alias = $alias[0];
+        $this->template->content->alias = $alias;
 
         # Render View
         echo $this->template;
@@ -295,16 +300,34 @@ class users_controller extends base_controller {
 
         # Execute the query to get the user's info. 
         # Store the result array in the variable $user
-        $user = DB::instance(DB_NAME)->select_rows($q);
+        $user = DB::instance(DB_NAME)->select_row($q);
 
         # Store the user_id in the variable $user_id
-        $user_id = $user[0]['user_id'];
+        $user_id = $user['user_id'];
+
+        # Upload the logo image
+        $logo = Upload::upload($_FILES, "/uploads/avatars/", array("jpg", "jpeg", "gif", "png"), $user_id);
+
+        if($logo == 'Invalid file type.') {
+            // return an error
+            Router::redirect("/users/profile/".$_POST['alias']."/filetype"); 
+        }
+
+        $_POST['logo'] = $user_id;
 
         # Set the where condtion to update
         $where_condition = "WHERE user_id = ".$user_id ;
 
         # Update the database update($table, $data, $where)
         $new_user = DB::instance(DB_NAME)->update('users', $_POST, $where_condition);
+
+        # TODO return error if image is too large
+        # TODO properly resize the image
+
+        # resize the image
+        $imgObj = new Image($_SERVER["DOCUMENT_ROOT"] . '/uploads/avatars/' . $logo);
+        $imgObj->resize(100,100, "crop");
+        $imgObj->save_image($_SERVER["DOCUMENT_ROOT"] . '/uploads/avatars/' . $logo); 
 
         # Send to success page if it worked, error if it didn't
         if (count($new_user) == 1){

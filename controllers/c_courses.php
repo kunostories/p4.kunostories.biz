@@ -14,37 +14,25 @@ class courses_controller extends base_controller {
     public function index() {
 
 	    $this->template->content = View::instance('v_courses_index');
-	    $this->template->title   = "All Courses";
+	    $this->template->title   = "All Free Lessons";
 
 	    # Build query to find courses not enrolled in by user
 	    $q = "SELECT * FROM courses c
-	    WHERE c.course_id NOT IN
+	    WHERE c.published = true AND 
+	    	c.course_id NOT IN
 	    	(SELECT course_id FROM users_courses uc
 	    		WHERE uc.user_id = ".$this->user->user_id.")";
 
 	    # Run the query
 	    $courses = DB::instance(DB_NAME)->select_rows($q);
 
-	    # Build query to find courses user enrolled in
-	    $q2 = "SELECT * FROM courses
-	    	INNER JOIN users_courses
-	    	ON courses.course_id = users_courses.course_id
-	    	WHERE users_courses.user_id = ". $this->user->user_id;
-
-	    # Run the query
-	    $enrolled = DB::instance(DB_NAME)->select_rows($q2);
-
-	    if(empty($enrolled)) {
-	    	# Not enrolled in any courses, let them know
-        	$error = "Why don't you enroll in a course?";
-	    }
-	    else {
-	    	$error = NULL;
+	    # If no courses, give error
+	    if(empty($courses)) {
+	    	$error = "Sorry, no new lessons today. We'll upload some soon! In the meantime, you can review <a href='/'>your lessons</a>.";
 	    }
 
 	    # Pass data to the View
 	    $this->template->content->courses = $courses;
-	    $this->template->content->enrolled = $enrolled;
 	    $this->template->content->error = $error;
 
 	    # Render the View
@@ -188,22 +176,28 @@ class courses_controller extends base_controller {
 			    $data = Array("progress" => $currentContents['position']);
 			    DB::instance(DB_NAME)->update("users_courses", $data, "WHERE user_id = ".$this->user->user_id." AND course_id = ".$course['course_id']);
 
-			    # Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
+			    # Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the view
 			    $next_url = $currentContents['position'] + 1;
 			    $q5 = "SELECT url FROM contents
 			    	WHERE position = ".$next_url;
 		    	$next_url = DB::instance(DB_NAME)->select_field($q5);
 		    	$currentContents["next"] = $next_url;
 
-		    	# Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the video view
+		    	# Find url of next content (position +1) and store in variable to be used in the 'Next Lesson' button in the view
 			    $previous_url = $currentContents['position'] - 1;
 			    $q6 = "SELECT url FROM contents
 			    	WHERE position = ".$previous_url;
 		    	$previous_url = DB::instance(DB_NAME)->select_field($q6);
 		    	$currentContents["previous"] = $previous_url;
 
-			    # Load video view
-	    		$this->template->content = View::instance('v_courses_video');
+		    	if($currentContents["type"] == 'video') {
+		    		# Load video view
+	    			$this->template->content = View::instance('v_courses_video');
+		    	}
+		    	elseif($currentContents["type"] == 'text') {
+		    		# Load text view
+	    			$this->template->content = View::instance('v_courses_text');
+		    	}
 
 	    		$this->template->content->currentContents = $currentContents;
 

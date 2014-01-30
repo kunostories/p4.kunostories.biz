@@ -1,25 +1,25 @@
 		<!-- begin sign up module form -->
-		<form method="POST" id="signup" class="form-horizontal" action="/users/p_signup" role="form">
+		<form method="POST" id="signup-form" class="form-horizontal" action="/users/p_signup" role="form">
 			<h3>Sign up</h3>
 
 			<!-- sign up with alias, email, and password -->
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Alias</label>
-				<div class="col-sm-9">
-					<input type="text" name="alias" class="form-control" placeholder="alias name" required>
+				<label for="alias" class="col-sm-4 control-label">Nickname</label>
+				<div class="col-sm-8">
+					<input type="text" name="alias" class="form-control" placeholder="nickname" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Email</label>
-				<div class="col-sm-9">
+				<label for="email" class="col-sm-4 control-label">Email</label>
+				<div class="col-sm-8">
 					<input type="email" name="email" class="form-control" placeholder="your@email.com" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Pass</label>
-				<div class="col-sm-9">
+				<label for="password" class="col-sm-4 control-label">Password</label>
+				<div class="col-sm-8">
 					<input type="password" name="password" class="form-control" placeholder="password" required>
 				</div>
 			</div>

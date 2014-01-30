@@ -5,10 +5,9 @@
 
 		<h2><?= $currentContents["title"]; ?></h2>
 		
-		<video controls autoplay>
-			<source src="/vids/<?= $currentContents["content"]; ?>" type="video/mp4">
-			Your browser does not support the video tag.
-		</video>
+		<div id="lesson-content">
+			<?= $currentContents["content"]; ?>
+		</div>
 		<div id="controls">
 			<?php if(isset($currentContents["previous"])): ?>
 			<a href="/courses/study/<?= $course["url"]; ?>/<?= $currentContents["previous"]; ?>" class="btn btn-success btn-lg pull-left"><span class="glyphicon glyphicon-circle-arrow-left"></span> Previous Lesson</a>

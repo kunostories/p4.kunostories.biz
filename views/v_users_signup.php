@@ -7,21 +7,18 @@
 			
 			<!-- error message -->
 			<?php if(isset($error)): ?>
-			
 			<div>
 				<p class="text-danger">
 					<?=$error ?>
 				</p>
 			</div>
-			
-			<br>
 
 			<?php endif; ?>
 			
 			<!-- alias, email, and password to sign up -->
 			<div class="form-group">
-				<label for="alias">Alias</label>
-				<input type="text" name="alias" class="form-control" placeholder="alias name" required>
+				<label for="alias">Nickname</label>
+				<input type="text" name="alias" class="form-control" placeholder="nickname" required>
 			</div>
 
 			<div class="form-group">
